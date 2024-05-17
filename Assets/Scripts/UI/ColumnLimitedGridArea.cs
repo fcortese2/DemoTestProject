@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,13 +32,8 @@ public class ColumnLimitedGridArea : GridLayoutGroup
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.x * areaWidthFillPercentage / 100f);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.y * areaHeightFillPercentage / 100f);
-    }
 
-    protected override void Start()
-    {
-        base.Start();
-        
-        SetMaxColumnCount(4);
+        SetMaxColumnCount(GameSetup.Instance.TableSize.x);
     }
 
     public void SetMaxColumnCount(int columnCount)
@@ -98,3 +94,35 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         return (bestCellSize, bestSpacing);
     }
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(ColumnLimitedGridArea))]
+public class ColumnLimitedGridAreaEditor: Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        /*ColumnLimitedGridArea clga = (ColumnLimitedGridArea)target;
+
+        EditorGUI.BeginChangeCheck();
+        
+        GUILayout.Space(20);
+
+        EditorGUILayout.LabelField("Tweaking", EditorStyles.boldLabel);
+
+        clga.spacingMinMax = EditorGUILayout.Vector2Field("Spacing MinMax", clga.spacingMinMax);
+        clga.cellSizeMinMax = EditorGUILayout.Vector2Field("Cell Size MinMax", clga.cellSizeMinMax);
+
+        clga.areaWidthFillPercentage =
+            EditorGUILayout.Slider("Area Width Fill Percentage", clga.areaWidthFillPercentage, 0, 100);
+        clga.areaHeightFillPercentage =
+            EditorGUILayout.Slider("Area Height Fill Percentage", clga.areaHeightFillPercentage, 0, 100);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(target);
+        }*/
+    }
+}
+#endif
