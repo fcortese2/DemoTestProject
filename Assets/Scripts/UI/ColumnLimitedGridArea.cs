@@ -12,7 +12,7 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     [Range(0, 100)] public float areaWidthFillPercentage = 80;
     [Range(0, 100)] public float areaHeightFillPercentage = 65;
 
-    public GameObject CardPrefab;
+    public FlippableCard CardPrefab;
 
     private int totalCardCount;
     
@@ -48,7 +48,7 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     {
         foreach (Transform child in transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
     }
 
