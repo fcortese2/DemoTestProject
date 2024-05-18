@@ -2,23 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Singleton SO/Game Setup", fileName = "Game Setup")]
-public class GameSetup : ScriptableObject
+[CreateAssetMenu(menuName = "Singleton SO/Game Setup", fileName = "GameSetup")]
+public class GameSetup : SingletonScriptableObject<GameSetup>
 {
-    private static GameSetup instance;
-
-    public static GameSetup Instance
-    {
-        get
-        {
-            if (!instance)
-            {
-                instance = Resources.Load<GameSetup>("Game Setup");
-            }
-
-            return instance;
-        }
-    }
-
     public Vector2Int TableSize;
 }
