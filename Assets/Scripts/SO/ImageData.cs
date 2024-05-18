@@ -21,6 +21,11 @@ public class ImageData : SingletonScriptableObject<ImageData>
             imageDataSets[i].UID = string.IsNullOrEmpty(imageDataSets[i].UID)
                 ? Guid.NewGuid().ToString()
                 : imageDataSets[i].UID;
+
+            while (imageDataSets.Count(set => set.UID == imageDataSets[i].UID) > 1)
+            {
+                imageDataSets[i].UID = Guid.NewGuid().ToString();
+            }
         }
     }
 }

@@ -11,6 +11,10 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     public Vector2 cellSizeMinMax = new Vector2(100, 1000);
     [Range(0, 100)] public float areaWidthFillPercentage = 80;
     [Range(0, 100)] public float areaHeightFillPercentage = 65;
+
+    public GameObject CardPrefab;
+
+    private int totalCardCount;
     
     protected override void OnValidate()
     {
@@ -33,7 +37,29 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.y * areaHeightFillPercentage / 100f);
 
+        ClearChildren();
+
+        Populate();
+        
         SetMaxColumnCount(GameSetup.Instance.TableSize.x);
+    }
+
+    public void ClearChildren()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child);
+        }
+    }
+
+    private void Populate()
+    {
+        totalCardCount = GameSetup.Instance.TableSize.x * GameSetup.Instance.TableSize.y;
+
+        for (int i = 0; i < totalCardCount; i++)
+        {
+            Instantiate(CardPrefab, rectTransform);
+        }
     }
 
     public void SetMaxColumnCount(int columnCount)
@@ -96,33 +122,12 @@ public class ColumnLimitedGridArea : GridLayoutGroup
 }
 
 #if UNITY_EDITOR
-
 [CustomEditor(typeof(ColumnLimitedGridArea))]
 public class ColumnLimitedGridAreaEditor: Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        /*ColumnLimitedGridArea clga = (ColumnLimitedGridArea)target;
-
-        EditorGUI.BeginChangeCheck();
-        
-        GUILayout.Space(20);
-
-        EditorGUILayout.LabelField("Tweaking", EditorStyles.boldLabel);
-
-        clga.spacingMinMax = EditorGUILayout.Vector2Field("Spacing MinMax", clga.spacingMinMax);
-        clga.cellSizeMinMax = EditorGUILayout.Vector2Field("Cell Size MinMax", clga.cellSizeMinMax);
-
-        clga.areaWidthFillPercentage =
-            EditorGUILayout.Slider("Area Width Fill Percentage", clga.areaWidthFillPercentage, 0, 100);
-        clga.areaHeightFillPercentage =
-            EditorGUILayout.Slider("Area Height Fill Percentage", clga.areaHeightFillPercentage, 0, 100);
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            EditorUtility.SetDirty(target);
-        }*/
     }
 }
 #endif
