@@ -20,7 +20,7 @@ public class PairManager : MonoBehaviour
             return instance;
         }
     }
-
+    
     [SerializeField] private FlippedCardCouple flipCouple = new FlippedCardCouple();
 
     public void RegisterCardFlipped(FlippableCard card)
@@ -35,7 +35,7 @@ public class PairManager : MonoBehaviour
         
         if (flipCouple is { LastCoupleCompleted: true, SuccessfulPair: true })
         {
-            Debug.Log("DO SCORE HERE");
+            ColumnLimitedGridArea.MarkCardPairFound(flipCouple.CardOne.LinkedUid);
             StartCoroutine(flipCouple.CardOne.RemoveFromTable(.8f));
             StartCoroutine(flipCouple.CardTwo.RemoveFromTable(.8f));
         }

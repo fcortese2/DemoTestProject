@@ -55,7 +55,7 @@ public class ImageDataSet
     public string UID;
     
     public Sprite Graphics;
-    [Range(1, 5)] public float ScoreValue = 1;
+    [Range(1, 5)] public int ScoreValue = 1;
 
     public ImageDataSet()
     {

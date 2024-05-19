@@ -80,7 +80,6 @@ public class FlippableCard : MonoBehaviour, IPointerClickHandler
         {
             PlayAudioClip(ClickSfx);
             PairManager.Instance.RegisterCardFlipped(this);
-            Debug.Log("INTERACTED");
         }
         else
         {

@@ -18,9 +18,10 @@ public class ColumnLimitedGridArea : GridLayoutGroup
 
     private int totalCardCount;
 
-    private List<string> cardsInPlay = new List<string>();
+    //private List<string> cardsInPlay = new List<string>();
     private List<FlippableCard> cardInstances = new List<FlippableCard>();
-    
+
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -32,6 +33,7 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.y * areaHeightFillPercentage / 100f);
     }
+#endif
 
     protected override void Awake()
     {
@@ -66,14 +68,14 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     {
         totalCardCount = GameSetup.Instance.TableSize.x * GameSetup.Instance.TableSize.y;
         
-        cardsInPlay = ImageData.Instance.GetDataSetsForCount(totalCardCount);
-        if (cardsInPlay == null)
+        GameData.Instance.GameCards = ImageData.Instance.GetDataSetsForCount(totalCardCount);
+        if (GameData.Instance.GameCards == null)
         {
             return;
         }
         
         //shuffle cards (quick easy way, not best way but works well enough for now)
-        cardsInPlay = cardsInPlay.OrderBy(s => Guid.NewGuid()).ToList();
+        GameData.Instance.GameCards = GameData.Instance.GameCards.OrderBy(s => Guid.NewGuid()).ToList();
         
         for (int i = 0; i < totalCardCount; i++)
         {
@@ -87,8 +89,8 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         int cardLoopIndex = 0;
         for (int i = 0; i < totalCardCount; i += 2)
         {
-            cardInstances[i].SetLink(cardsInPlay[cardLoopIndex]);
-            cardInstances[i + 1].SetLink(cardsInPlay[cardLoopIndex]);
+            cardInstances[i].SetLink(GameData.Instance.GameCards[cardLoopIndex]);
+            cardInstances[i + 1].SetLink(GameData.Instance.GameCards[cardLoopIndex]);
             cardLoopIndex++;
         }
     }
@@ -118,10 +120,23 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         Debug.Log($"cSpacing = {outCalc.spacing}");
     }
 
-    public void MarkCardPairFound(string uid)
+    public static void MarkCardPairFound(string uid)
     {
-        cardsInPlay.Remove(uid);
+        Debug.Log($"FOUND {uid}");
+        
+        GameData.Instance.PairsFound.Add(uid);
         //do game end check logic here...
+
+        ImageDataSet dataset = ImageData.Instance.GetFromUid(uid);
+        
+        Debug.Log($"FOUND {uid} WORTH {dataset.ScoreValue}");
+
+        GameData.Instance.Score += dataset.ScoreValue;
+
+        if (GameData.Instance.PairsFound.Count == GameData.Instance.GameCards.Count)
+        {
+            Debug.Log("GAME ENDED!");
+        }
     }
 
     public static (float cellSize, float spacing) CalculateCellSizeAndSpacing(float width, float height,

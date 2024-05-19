@@ -15,25 +15,25 @@ MonoBehaviour:
   imageDataSets:
   - UID: 1ce7d311-4d75-41e1-8f7a-10ed5be98c2a
     Graphics: {fileID: 21300000, guid: cb9c2584767d3b94ca91bf64e17d3f1f, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: c5111521-f15b-497a-a0c9-61e88bd825a2
     Graphics: {fileID: 21300000, guid: dfbf186be21a2484aa7ac86af4a44540, type: 3}
     ScoreValue: 1
   - UID: 2e3a5e0e-33a4-4993-8e2b-bd59f56c1b94
     Graphics: {fileID: 21300000, guid: 3f0d0884e3367234fb061442dc5cbec5, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: 2b5da208-2023-484b-8b80-99cd7f780e38
     Graphics: {fileID: 21300000, guid: 37d90d83049f59344b2eafb04071b4dd, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: 560f4ce4-bfbe-468e-ad4c-2cdc9b9ac6a6
     Graphics: {fileID: 21300000, guid: ad39498a83eb8b944a80d052a0e915af, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: cdb101ea-5113-4ffd-b8a7-4d141f47c3db
     Graphics: {fileID: 21300000, guid: 6e80cd9376db1174b9352e81ccbf639f, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: bbb418dc-2f76-4401-83a8-fa6a598ea75e
     Graphics: {fileID: 21300000, guid: 5ca7eeeeed92db54fa193fc9012cf172, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
   - UID: bc028887-5d2d-4226-bb1b-e03bb0457207
     Graphics: {fileID: 21300000, guid: d1ff356e02f665c469d4ce602f1ce647, type: 3}
-    ScoreValue: 0
+    ScoreValue: 1
