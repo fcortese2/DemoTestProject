@@ -13,7 +13,7 @@ public class GameData : SingletonScriptableObject<GameData>
         get => score;
         set
         {
-            Debug.Log($"UPPING SCORE BY {value}");
+            Debug.Log($"UPPING SCORE TO {value}");
             score = value;
 
             OnScoreChanged.Invoke(score);
@@ -22,6 +22,10 @@ public class GameData : SingletonScriptableObject<GameData>
 
     public UnityEvent<int> OnScoreChanged = new UnityEvent<int>();
 
+    public int MatchesStraight = 1;
+
     public List<string> GameCards = new List<string>();
     public List<string> PairsFound = new List<string>();
+
+    public bool WonGame = false;
 }

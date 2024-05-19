@@ -6,4 +6,6 @@ using UnityEngine;
 public class GameSetup : SingletonScriptableObject<GameSetup>
 {
     public Vector2Int TableSize;
+
+    public bool IsLoadingSave = false;
 }

@@ -16,7 +16,10 @@ public class StartButton : Button
 
         onClick.AddListener(() =>
         {
+            GameData.Instance.WonGame = false;
+            GameSetup.Instance.IsLoadingSave = false;
             GameSetup.Instance.TableSize = mapSize;
+            GameData.Instance.MatchesStraight = 1;
             GameData.Instance.PairsFound = new List<string>();
             GameData.Instance.Score = 0;
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);

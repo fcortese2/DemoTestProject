@@ -34,6 +34,27 @@ MonoBehaviour:
   - UID: bbb418dc-2f76-4401-83a8-fa6a598ea75e
     Graphics: {fileID: 21300000, guid: 5ca7eeeeed92db54fa193fc9012cf172, type: 3}
     ScoreValue: 1
-  - UID: bc028887-5d2d-4226-bb1b-e03bb0457207
+  - UID: a956016c-bc2e-40a2-aa66-3e28373bf5ac
     Graphics: {fileID: 21300000, guid: d1ff356e02f665c469d4ce602f1ce647, type: 3}
+    ScoreValue: 1
+  - UID: 62c43950-c555-4201-9aa0-41544b23a9bb
+    Graphics: {fileID: 21300000, guid: e811f7cbc8eac364e8691171d25159c0, type: 3}
+    ScoreValue: 1
+  - UID: 89c0a94b-b6f6-40ef-b641-8b73e7d1249c
+    Graphics: {fileID: 21300000, guid: bafed2e5d9d74a847b0eed3814c89b9d, type: 3}
+    ScoreValue: 1
+  - UID: de7d4327-2f91-4275-bc11-b88ba9c80aed
+    Graphics: {fileID: 21300000, guid: 024e5943a86b28548ae5087d07f81de5, type: 3}
+    ScoreValue: 1
+  - UID: fadaa20e-d1cc-486c-8a16-47f01609b424
+    Graphics: {fileID: 21300000, guid: 31c6b79894f450449959a09987313b28, type: 3}
+    ScoreValue: 1
+  - UID: 30e57911-5765-480d-bc72-6e9207eeea17
+    Graphics: {fileID: 21300000, guid: ed64cafe04c167745b6d87651e849428, type: 3}
+    ScoreValue: 1
+  - UID: 5a317458-87bf-422d-96ad-7410802f18ac
+    Graphics: {fileID: 21300000, guid: 3158675c2332b14428a179f75afc095f, type: 3}
+    ScoreValue: 1
+  - UID: bc028887-5d2d-4226-bb1b-e03bb0457207
+    Graphics: {fileID: 21300000, guid: 81002e4a5ba34dd469bf61a58e936f50, type: 3}
     ScoreValue: 1
