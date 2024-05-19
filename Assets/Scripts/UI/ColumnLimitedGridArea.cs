@@ -118,6 +118,12 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         Debug.Log($"cSpacing = {outCalc.spacing}");
     }
 
+    public void MarkCardPairFound(string uid)
+    {
+        cardsInPlay.Remove(uid);
+        //do game end check logic here...
+    }
+
     public static (float cellSize, float spacing) CalculateCellSizeAndSpacing(float width, float height,
         float minSpacing, float maxSpacing, float minCellSize, float maxCellSize, int itemCountX, int itemCountY)
     {
