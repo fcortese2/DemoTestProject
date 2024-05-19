@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +17,9 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     public FlippableCard CardPrefab;
 
     private int totalCardCount;
+
+    private List<string> cardsInPlay = new List<string>();
+    private List<FlippableCard> cardInstances = new List<FlippableCard>();
     
     protected override void OnValidate()
     {
@@ -31,17 +36,20 @@ public class ColumnLimitedGridArea : GridLayoutGroup
     protected override void Awake()
     {
         base.Awake();
-        
+
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.x * areaWidthFillPercentage / 100f);
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             rectTransform.parent.GetComponent<RectTransform>().sizeDelta.y * areaHeightFillPercentage / 100f);
-
-        ClearChildren();
-
-        Populate();
         
-        SetMaxColumnCount(GameSetup.Instance.TableSize.x);
+        if (Application.isPlaying)
+        {
+            SetMaxColumnCount(GameSetup.Instance.TableSize.x);
+
+            ClearChildren();
+
+            Populate();
+        }
     }
 
     public void ClearChildren()
@@ -50,15 +58,38 @@ public class ColumnLimitedGridArea : GridLayoutGroup
         {
             Destroy(child.gameObject);
         }
+
+        cardInstances = new List<FlippableCard>();
     }
 
     private void Populate()
     {
         totalCardCount = GameSetup.Instance.TableSize.x * GameSetup.Instance.TableSize.y;
-
+        
+        cardsInPlay = ImageData.Instance.GetDataSetsForCount(totalCardCount);
+        if (cardsInPlay == null)
+        {
+            return;
+        }
+        
+        //shuffle cards (quick easy way, not best way but works well enough for now)
+        cardsInPlay = cardsInPlay.OrderBy(s => Guid.NewGuid()).ToList();
+        
         for (int i = 0; i < totalCardCount; i++)
         {
-            Instantiate(CardPrefab, rectTransform);
+            cardInstances.Add(Instantiate(CardPrefab, rectTransform));
+        }
+
+        //shuffle instances
+        cardInstances = cardInstances.OrderBy(ci => Guid.NewGuid()).ToList();
+
+        //do assigning here to cardInstances from list cardsInPlay
+        int cardLoopIndex = 0;
+        for (int i = 0; i < totalCardCount; i += 2)
+        {
+            cardInstances[i].SetLink(cardsInPlay[cardLoopIndex]);
+            cardInstances[i + 1].SetLink(cardsInPlay[cardLoopIndex]);
+            cardLoopIndex++;
         }
     }
 

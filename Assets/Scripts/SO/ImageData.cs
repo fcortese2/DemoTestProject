@@ -13,6 +13,25 @@ public class ImageData : SingletonScriptableObject<ImageData>
     {
         return imageDataSets.FirstOrDefault(ids => ids.UID == uid);
     }
+
+    public List<string> GetDataSetsForCount(int cardCount)
+    {
+        float errCheck = cardCount % 2;
+        if (errCheck != 0)
+        {
+            ADebug.LogInvalidParam("cardCount is not a multiple of 2. Number of cards MUST be even.");
+            return null;
+        }
+
+        int getCount = cardCount / 2;
+        if (getCount > imageDataSets.Count)
+        {
+            ADebug.FatalLogicError("Trying to get more card data sets than available.");
+            return null;
+        }
+
+        return imageDataSets.GetRange(0, cardCount / 2).Select(ids => ids.UID).ToList();
+    }
     
     private void OnValidate()
     {

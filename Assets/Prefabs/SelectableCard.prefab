@@ -178,3 +178,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <LinkedUid>k__BackingField: 
+  iconImage: {fileID: 932891555637694842}
+  imageCanvasGroup: {fileID: 2584889544503136922}
