@@ -12,9 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367bd2090e3f2ed4cbb83190a2275466, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 0
+  score: 1
   OnScoreChanged:
     m_PersistentCalls:
       m_Calls: []
-  GameCards: []
-  PairsFound: []
+  MatchesStraight: 2
+  GameCards:
+  - fadaa20e-d1cc-486c-8a16-47f01609b424
+  - c5111521-f15b-497a-a0c9-61e88bd825a2
+  - 560f4ce4-bfbe-468e-ad4c-2cdc9b9ac6a6
+  - a956016c-bc2e-40a2-aa66-3e28373bf5ac
+  - 2b5da208-2023-484b-8b80-99cd7f780e38
+  - a7822cf9-710d-443e-8084-da8b493c41fc
+  - 1ce7d311-4d75-41e1-8f7a-10ed5be98c2a
+  - de7d4327-2f91-4275-bc11-b88ba9c80aed
+  - 30e57911-5765-480d-bc72-6e9207eeea17
+  - e1257e89-a105-47db-a878-78ba7391e69c
+  - 62f5426a-24c7-470e-a67a-4bb3b9898801
+  - 89c0a94b-b6f6-40ef-b641-8b73e7d1249c
+  - 5a317458-87bf-422d-96ad-7410802f18ac
+  - 62c43950-c555-4201-9aa0-41544b23a9bb
+  - 2e3a5e0e-33a4-4993-8e2b-bd59f56c1b94
+  - cdb101ea-5113-4ffd-b8a7-4d141f47c3db
+  - b3d2a7f6-6bca-46dc-b315-262df6378d04
+  - bbb418dc-2f76-4401-83a8-fa6a598ea75e
+  PairsFound:
+  - 62f5426a-24c7-470e-a67a-4bb3b9898801
+  WonGame: 1
